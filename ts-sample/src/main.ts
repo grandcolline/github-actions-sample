@@ -19,12 +19,15 @@ export async function run(): Promise<void> {
     core.debug(new Date().toTimeString())
 
     // ブランチ名を取得
-    const branch = context.eventName
-    core.info(`The branch name is ${branch}`)
+    const event = context.eventName
+    const repo = context.repo
+    const branch = context.ref
+    core.info(`The event name is ${event}`)
+    core.info(`The repository is ${repo.owner}/${repo.repo}`)
+    core.info(`The branch is ${branch}`)
 
     // Set outputs for other workflow steps to use
     core.setOutput('time', new Date().toTimeString())
-    core.setOutput('branch', branch)
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
