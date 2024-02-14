@@ -1,4 +1,5 @@
 import * as core from '@actions/core'
+import { context } from '@actions/github'
 import { wait } from './wait'
 
 /**
@@ -17,8 +18,13 @@ export async function run(): Promise<void> {
     await wait(parseInt(ms, 10))
     core.debug(new Date().toTimeString())
 
+    // ブランチ名を取得
+    const branch = context.eventName
+    core.info(`The branch name is ${branch}`)
+
     // Set outputs for other workflow steps to use
     core.setOutput('time', new Date().toTimeString())
+    core.setOutput('branch', branch)
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
