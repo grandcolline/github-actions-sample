@@ -6,7 +6,8 @@ runs:
     - name: echo
       run: |
         pwd
-        cat './branch.yml'
+        echo "${GITHUB_ACTION_PATH}"
+        cat "${GITHUB_ACTION_PATH}/branch.yml"
 
       shell: bash
 
