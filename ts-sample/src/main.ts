@@ -22,9 +22,9 @@ export async function run(): Promise<void> {
     const event = context.eventName
     const repo = context.repo
     const branch = context.ref
-    core.info(`The event name is ${event}`)
-    core.info(`The repository is ${repo.owner}/${repo.repo}`)
-    core.info(`The branch is ${branch}`)
+    core.info(`event name is ${event}`)
+    core.info(`repository is ${repo.owner}/${repo.repo}`)
+    core.info(`branch is ${branch}`)
 
     // Set outputs for other workflow steps to use
     core.setOutput('time', new Date().toTimeString())

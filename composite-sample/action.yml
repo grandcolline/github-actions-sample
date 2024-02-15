@@ -1,0 +1,12 @@
+name: "Composite Sample"
+
+runs:
+  using: "composite"
+  steps:
+    - name: echo
+      run: |
+        pwd
+        cat './branch.yml'
+
+      shell: bash
+
