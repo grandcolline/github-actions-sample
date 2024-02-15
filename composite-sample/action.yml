@@ -3,11 +3,18 @@ name: "Composite Sample"
 runs:
   using: "composite"
   steps:
+    - name: install yq
+      run: |
+        curl -LJO https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+        sudo mv yq_linux_amd64 yq
+        sudo chmod a+x yq
+      shell: bash
+
+
     - name: echo
       run: |
         pwd
         echo "${GITHUB_ACTION_PATH}"
-        cat "${GITHUB_ACTION_PATH}/branch.yml"
-
+        cat "${GITHUB_ACTION_PATH}/branch.yml" | yq .
       shell: bash
 
