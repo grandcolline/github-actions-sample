@@ -18,4 +18,5 @@ runs:
         TARGETS+=("prd")
 
         targets=$(printf '%s\n' "${TARGETS[@]}" | jq -R . | jq -s -c .)
+        echo $targets
         echo "targets=$targets" >> $GITHUB_OUTPUT
